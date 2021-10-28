@@ -45,7 +45,6 @@ HCSR04::HCSR04(pinStruct_t& echoPin,
 							 TIM_TypeDef* TIMx,
 							 uint8_t gpioAFSelTIMx)
 {
-	sysClockFreq = HAL_RCC_GetSysClockFreq();
 	pulseWidth = 0;
 	distanceCM = 0;
 	//GPIO config
@@ -92,7 +91,8 @@ HCSR04::HCSR04(pinStruct_t& echoPin,
 }
 
 uint32_t HCSR04::GetDistance(void)
-{	
+{
+	const uint32_t sysClockFreq = 16000000;
 	if((htim.Instance->SR & TIM_SR_CC2IF) == TIM_SR_CC2IF)
 	{
 		pulseWidth = htim.Instance->CCR2;

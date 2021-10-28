@@ -12,7 +12,6 @@ class HCSR04
 {
 	private:
 		TIM_HandleTypeDef htim;
-		uint32_t sysClockFreq;
 		uint32_t pulseWidth;
 		uint32_t distanceCM;
 	
